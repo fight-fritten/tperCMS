@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>博客列表</title>
+    <!--  start: core js/css -->
+    <link rel="stylesheet" href="__STATIC__/bootstrap4/css/bootstrap.min.css">
+    <script src="__STATIC__/jquery/jquery-3.2.1.min.js"></script>
+    <script src="__STATIC__/bootstrap4/js/popper.min.js"></script>
+    <script src="__STATIC__/bootstrap4/js/bootstrap.min.js"></script>
+    <!--  end: core js/css -->
+
+
+</head>
+<body>
+<nav class="navbar navbar-dark  bg-dark flex-md-nowrap p-0 fixed-top">
+    <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">回收站</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="javascript:history.go(-1)">返回上一页</a>
+        </li>
+    </ul>
+</nav>
+<!--    导航栏-->
+<div class="container" style="margin-top: 50px">
+    <span class="lead">{$tip}</span>
+    <span id="id"></span>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>序号（ID）</th>
+            <th>标题</th>
+            <th>简介</th>
+            <th>发布/修改时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        {$method}
+        <tbody>
+        {volist name='data' id='list'}
+        <tr>
+            <td>{$list.id}</td>
+            <td>{$list.title}</td>
+            <td>{$list.profile|raw}</td>
+            <td>{$list.time}</td>
+            <td><a href=""><button class="btn btn-primary" id="restore" onclick="saveId('{$list.id}')">还原</button></a>
+                <a href=""><button class="btn btn-danger" id="real_delete" onclick="saveId('{$list.id}')">彻底删除</button></a></td>
+
+        </tr>
+        {/volist}
+        {$page|raw}
+        </tbody>
+    </table>
+</div>
+</body>
+<script>
+    //
+    //把id保存下来
+    function saveId(id)
+    {
+        $("#id").html(id);
+    }
+    //还原
+    $("#restore").click(function(){
+
+        $.ajax({
+            type : "POST",
+            async:true,
+            timeout:2000,
+            url:"../../sql/recycler/restore",
+            data:{
+                id:$("#id").html()
+            },
+            success:function(result)
+            {
+                alert(result);
+                location.reload();
+            },
+            error:function (err) {
+
+                alert(err.responseText);
+                location.reload();
+
+            }
+        });
+    });
+    //彻底删除
+    $("#real_delete").click(function(){
+
+        $.ajax({
+            type : "POST",
+            async:true,
+            timeout:2000,
+            url:"../../sql/recycler/realDelete",
+            data:{
+                id:$("#id").html()
+            },
+            success:function(result)
+            {
+                if(result.status=='200')
+                {
+                    alert('成功，如果想要恢复，请去common/rush.txt中查看');
+                    location.reload();
+                }
+                if(result.status=='404')
+                {
+                    alert('失败，请重试或者联系开发者')
+                }
+            },
+            error:function (err) {
+
+                alert('失败，可能是网络原因，建议稍候重试，或联系开发者');
+                alert(JSON.stringify(err))
+
+            }
+        });
+    });
+</script>
+</html>

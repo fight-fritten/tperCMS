@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>blog's board</title>
+
+
+    <script src="__STATIC__/js/wangEditor.min.js"></script>  <!--使用的4版本-->
+
+
+    <!--  start: core js/css -->
+    <link rel="stylesheet" href="__STATIC__/bootstrap4/css/bootstrap.min.css">
+    <script src="__STATIC__/jquery/jquery-3.2.1.min.js"></script>
+    <script src="__STATIC__/bootstrap4/js/popper.min.js"></script>
+    <script src="__STATIC__/bootstrap4/js/bootstrap.min.js"></script>
+    <!--  end: core js/css -->
+<!--    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="__STATIC__/css/dashboard.css">
+    <script src="__STATIC__/js/dashboard.js"></script>
+
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="dashboard.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-dark  bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">修改博客</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="javascript:history.go(-1)">返回上一页</a>
+        </li>
+    </ul>
+</nav>
+
+
+<div class="container">
+
+    <div class="mt-3">
+
+
+        <label>编号（ID）:</label><span id="id">{$id}</span>&nbsp;&nbsp;&nbsp;&nbsp;<label>分类:</label><span id="class">{$class}</span>
+        <input type="email" class="form-control" id="title" value="{$data.0.title}" placeholder="请输入文章标题">
+        <p></p>
+        <button id="btn1" class="btn btn-outline-success">保存并发布</button>
+        <p></p>
+        <div  id="contentDiv" >
+            <p>{$data.0.content|raw}</p>
+        </div>
+
+
+
+    </div>
+</div>
+
+<!-- 成功模态框 -->
+<div class="modal fade" id="rightModal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <!-- 模态框主体 -->
+            <div class="modal-body">
+                操作成功！
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 失败模态框 -->
+<div class="modal fade" id="errorModal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <!-- 模态框主体 -->
+            <div class="modal-body">
+                发布成功！
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+<script>
+    var E = window.wangEditor;
+    var editor = new E('#contentDiv');
+    editor.config.uploadImgServer = '../../../../upload/Img/richtext';
+    editor.config.uploadImgMaxSize = 100 * 1024 * 1024;
+    editor.config.uploadImgMaxLength = 1000;
+    editor.config.uploadFileName = 'file';//服务端接收file的名字
+    editor.config.uploadImgAccept = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp'];//限制类型
+    editor.config.debug = true;
+    editor.config.uploadImgHooks = {
+        // 上传图片之前
+        // 图片上传并返回了结果，图片插入已成功
+        success: function(xhr) {
+            console.log('success', xhr)
+        },
+        // 图片上传并返回了结果，但图片插入时出错了
+        fail: function(xhr, editor, resData) {
+            console.log('fail',resData)
+        },
+        // 上传图片出错，一般为 http 请求的错误
+        error: function(xhr, editor, resData) {
+            console.log('error', xhr)
+        },
+        // 上传图片超时
+        timeout: function(xhr) {
+            console.log('timeout')
+        },
+        // 图片上传并返回了结果，想要自己把图片插入到编辑器中
+        // 例如服务器端返回的不是 { errno: 0, data: [...] } 这种格式，可使用 customInsert
+        customInsert: function(insertImgFn, result) {
+            // result 即服务端返回的接口
+            console.log('customInsert', result)
+    
+            // insertImgFn 可把图片插入到编辑器，传入图片 src ，执行函数即可
+            insertImgFn(result.data[0])
+        }
+    }
+
+    editor.create()
+</script>
+<script>
+    //上传文章
+    $("#btn1").click(function(){
+        
+        // alert(editor.txt.html());
+        //验空
+        if($("#title").val()==''||editor.txt.html()=='')
+        {
+            alert('请输入完整');
+            return false;
+        }
+        //截取简介
+        var content = editor.txt.html().replace(/<.*?>/g,"").replace(/&nbsp;/ig, "");
+        //去除富文本中的html标签和空格标签
+        var profile = content.substring(0,40)+"...";
+        //截取简介
+        //ajax插入
+
+        $.ajax({
+            type : "POST",
+            async:false,
+            timeout:6000,
+            url:"../../../../sql/blog/updateblog",
+            data:{
+                title:$("#title").val(),
+                content:editor.txt.html(),
+                class:'{$class}',
+                profile:profile,
+                id:{$id}
+
+            },
+            success:function(result)
+            {
+                alert(result);
+            },
+            error:function (err) {
+                alert(err.status+err.responseText);
+            }
+        });
+    });
+
+</script>
+
+</body>
+</html>

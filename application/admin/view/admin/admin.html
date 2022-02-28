@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>blog's board</title>
+
+   
+    <!--  start: core js/css -->
+    <link rel="stylesheet" href="__STATIC__/bootstrap4/css/bootstrap.min.css">
+    <script src="__STATIC__/jquery/jquery-3.2.1.min.js"></script>
+    <script src="__STATIC__/bootstrap4/js/popper.min.js"></script>
+    <script src="__STATIC__/bootstrap4/js/bootstrap.min.js"></script>
+    <!--  end: core js/css -->
+    
+    <link rel="stylesheet" href="__STATIC__/css/dashboard.css">
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<!--导航栏-->
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">后台管理</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <input class="form-control form-control-dark w-100" type="text" placeholder="搜索..." aria-label="Search">
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="../../admin/admin/loginOut">登出</a>
+        </li>
+    </ul>
+</nav>
+<!--左侧导航栏-->
+<div class="container-fluid">
+    <div class="row">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <div class="sidebar-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            <span data-feather="home"></span>
+                            博客操作 <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../admin/admin/newblog">
+                            <span data-feather="file"></span>
+                            1.写博客
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../admin/editblog">
+                            <span data-feather="shopping-cart"></span>
+                            2.编辑博客
+                        </a>
+                    </li>
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="../admin/editblog/method/draft">-->
+<!--                            <span data-feather="users"></span>-->
+<!--                            3.草稿箱-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                    没有时间来写，艹-->
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../sql/recycler/binlist">
+                            <span data-feather="bar-chart-2"></span>
+                            3.回收站
+                        </a>
+                    </li>
+
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link active" href="#">-->
+<!--                            <span data-feather="home"></span>-->
+<!--                            前端布局设计 <span class="sr-only">(current)</span>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="../../admin/admin/setlayout">-->
+<!--                            <span data-feather="bar-chart-2"></span>-->
+<!--                            1.设置前端备案号-->
+<!--                        </a>-->
+<!--                    </li>-->
+                </ul>
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    <span>@tperCMS  2022.2.28-1</span>     
+                    <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
+                        <span data-feather="plus-circle"></span>
+                    </a>
+                </h6>
+                <ul class="nav flex-column mb-2">
+                </ul>
+            </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-md-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">面板首页</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group mr-2">
+                        <a href="../../index/index/view"><button type="button" class="btn btn-sm btn-outline-secondary">去首页看看</button></a>
+                        <a href="javascript:join_us()"><button type="button" class="btn btn-sm btn-outline-secondary">关于我们</button></a>
+                    </div>
+<!--                    <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">-->
+<!--                        <span data-feather="calendar"></span>-->
+<!--                        分类-->
+<!--                    </button>-->
+                </div>
+            </div>
+            <div style="background-color: whitesmoke" id="options">
+                <div class="container">
+                    <h1>欢迎来到管理端界面！！</h1>
+                    <p>整个博客实在是太简单了，功能也很少，好好好</p>
+                    <blockquote class="blockquote">
+                        <a href="../../admin/admin/newblog"><p>快速开始！点击这里，开始写第一篇博客</p></a>
+                        <footer class="blockquote-footer">From developer</footer>
+                    </blockquote>
+                    <p>还可以：</p>
+                    <a href="../admin/editblog"><span>编辑所有的博客</span></a><br><br>
+                    <a href="../../sql/recycler/binlist"><span>看看被你放到回收站的博客</span></a><br><br>
+                    <a href="../../index/index/view"><span>或者去首页看看</span></a><br><br>
+
+                    <br><br>
+                    还有更多功能。。。请稍候
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+
+
+<script>
+function join_us() {
+    alert('有意向合作，欢迎联系，邮箱：f1ght@foxmail.com');
+}
+</script>
+</body>
+</html>

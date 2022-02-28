@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object name="public">
+    <ifinit>false</ifinit>
+        <!--是否可以进行数据库初始化，已初始化则为true，否则为未初始化 -->
+        <!--为true，则无法访问./install/install/step1 ,要想访问，就改成其他的就行了-->
+    <text>
+        <beian>common/common.xml里面设置备案号</beian>
+        <!--上面这个是写备案号的地方，把网站备案号写在上面 -->
+    </text>
+    <config>
+        <ifLock>true</ifLock>
+        <!--个人文章是否上锁 true则为要上锁，其他的都为不上锁 -->
+    </config>
+</object>

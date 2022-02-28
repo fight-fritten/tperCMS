@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>登录界面</title>
+
+    <link rel="stylesheet" href="__STATIC__/toast/toast.min.css">
+    <script src="__STATIC__/toast/toast.min.js"></script>
+    <link rel="stylesheet" href="__STATIC__/css/signin.css">
+
+
+    <!--  start: core js/css -->
+    <link rel="stylesheet" href="__STATIC__/bootstrap4/css/bootstrap.min.css">
+    <script src="__STATIC__/jquery/jquery-3.2.1.min.js"></script>
+    <script src="__STATIC__/bootstrap4/js/popper.min.js"></script>
+    <script src="__STATIC__/bootstrap4/js/bootstrap.min.js"></script>
+    <!--  end: core js/css -->
+
+
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="signin.css" rel="stylesheet">
+</head>
+<body class="text-center">
+
+<form class="form-signin" action="../../admin/admin/logincheck" method="post">
+    
+    <img class="mb-4" src="__STATIC__/img/logo.png" alt="" width="72" height="72">
+    
+    <h1 class="h3 mb-3 font-weight-normal">管理登录</h1>
+    
+    <label for="username" >账号</label>
+    <input type="text" id="username" name="username" class="form-control" placeholder="用户名"  autofocus>
+    <label for="passwd" >密码</label>
+    <input type="password" id="passwd" name="passwd" class="form-control" placeholder="密码" >
+    
+    <!--    <div class="checkbox mb-3">-->
+    <!--        <label>-->
+    <!--            <input type="checkbox" value="remember-me"> 记住我-->
+    <!--        </label>-->
+    <!--    </div>-->
+
+    <button id="btn1" class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+    <a href="javascript:show_tip()">忘记密码</a>
+    <p class="mt-5 mb-3 text-muted">&copy; 2017-2021</p>
+    <!--    -->
+
+
+
+</form>
+
+
+<script>
+    //登录验空
+    $("#btn1").click(function(){
+
+        if($("#username").val()==''||$("#passwd").val()=='')
+        {
+            alert('禁止为空，请填写完整');
+            return false;
+        }
+
+    });
+    //错误提示
+
+    /**
+     * 测试，弹窗提示
+     */
+    function show_tip() {
+        alert('请联系数据库持有者，在数据库中修改用户名和密码');
+    }
+</script>
+</body>
+
+</html>
