@@ -15,7 +15,7 @@
 
 - 想整一个玩玩，可以直接下载一个类似wamp的集成环境，或者phpstudy
 
-![image-20220223200347841](C:\Users\F1ght\AppData\Roaming\Typora\typora-user-images\image-20220223200347841.png)
+![image-20220223200347841](https://github.com/fight-fritten/tperCMS/tree/master/SCREENSHOT/1.png)
 
 - 1.然后把下载好的项目放进其phpstudy的工作目录下：
 
@@ -37,19 +37,19 @@
 
 - 然后，输入你的数据库的各种信息，什么用户名，密码，端口，数据库名，网址。
 
-  ![image-20220223205444733](C:\Users\F1ght\AppData\Roaming\Typora\typora-user-images\image-20220223205444733.png)
+  ![image-20220223205444733](https://github.com/fight-fritten/tperCMS/tree/master/SCREENSHOT/2.png)
 
 - 点击确认
 
 - 还要输入你的登录用户名和密码
 
-![image-20220223205518781](C:\Users\F1ght\AppData\Roaming\Typora\typora-user-images\image-20220223205518781.png)
+![image-20220223205518781](https://github.com/fight-fritten/tperCMS/tree/master/SCREENSHOT/3.png)
 
 - 用作登录后台用。
 
 - 一切顺利的话，就可以点后台登录了：
 
-  ![image-20220223205623912](C:\Users\F1ght\AppData\Roaming\Typora\typora-user-images\image-20220223205623912.png)
+  ![image-20220223205623912](https://github.com/fight-fritten/tperCMS/tree/master/SCREENSHOT/4.png)
 
 ## 3.博客操作
 
@@ -63,7 +63,7 @@
 
 - 这个密码查看功能可以取消，下图中有个标签，点那个
 
-  ![image-20220223210546563](C:\Users\F1ght\AppData\Roaming\Typora\typora-user-images\image-20220223210546563.png)
+  ![image-20220223210546563](https://github.com/fight-fritten/tperCMS/tree/master/SCREENSHOT/5.png)
 
 - 这个富文本编辑器很有意思，功能很多，然后发表情会报错，不知道为什么
 - 点击”保存并发布“
